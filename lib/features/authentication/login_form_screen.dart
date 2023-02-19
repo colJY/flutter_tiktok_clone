@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
+import 'package:tiktok_clone/features/authentication/onboarding/interests_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 import '../../constants/sizes.dart';
@@ -20,9 +21,13 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
       if (_formkey.currentState!.validate()) {
         // 에러가 없다면
         _formkey.currentState!.save();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const InterestsScreen(),
+          ),
+        );
       }
     }
-    _formkey.currentState?.validate();
   }
 
   void _onScaffoldTap() {
@@ -47,30 +52,38 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
               children: [
                 Gaps.v28,
                 TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Email",
-                    ),
-                    validator: (value) {
-                      return null;
-                    },
-                    onSaved: (newValue) {
-                      if (newValue != null) {
-                        formData['email'] = newValue;
-                      }
-                    }),
+                  decoration: const InputDecoration(
+                    hintText: "Email",
+                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "plz write your email";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['email'] = newValue;
+                    }
+                  },
+                ),
                 Gaps.v16,
                 TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Password",
-                    ),
-                    validator: (value) {
-                      return null;
-                    },
-                    onSaved: (newValue) {
-                      if (newValue != null) {
-                        formData['password'] = newValue;
-                      }
-                    }),
+                  decoration: const InputDecoration(
+                    hintText: "Password",
+                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "plz write your password";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['password'] = newValue;
+                    }
+                  },
+                ),
                 Gaps.v28,
                 GestureDetector(
                   onTap: _onSubmitTap,
