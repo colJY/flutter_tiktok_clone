@@ -18,8 +18,10 @@ class VideoPost extends StatefulWidget {
   State<VideoPost> createState() => _VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost>
-    with SingleTickerProviderStateMixin {
+class _VideoPostState extends State<
+        VideoPost> // with 이하 : 그 클래스를 복사해오겠다, 클래스의 메서드 속성 전부 가져오겠다 확장 없이
+    with
+        SingleTickerProviderStateMixin {
   final VideoPlayerController _videoPlayerController =
       VideoPlayerController.asset("assets/videos/videos.mp4");
 
