@@ -99,6 +99,8 @@ class _VideoPostState extends State<
         borderRadius: BorderRadius.circular(Sizes.size14),
       ),
       context: context,
+      isScrollControlled:
+          true, // BottomSheet의 크기를 조절 할 수 있게 됨 (video commnets 에서 height: size.height * 0.7만 진행하면 안 커짐 => bottomSheet를 ListView에서 쓸 때 true를 해야함)
       builder: (context) => const VideoComments(),
     );
     _onTogglePause(); // await 문에서 기다리다가 댓글창을 닫고 영상으로 돌아가면 실행
