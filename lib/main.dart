@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 
 import 'constants/sizes.dart';
 
@@ -18,6 +18,8 @@ class TikTokApp extends StatelessWidget {
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFe9435A),
         ), // cupertino Search cursor 색은 여기서
+        splashColor: Colors.transparent, // ListTile 탭 효과 끄기
+        // highlightColor: Colors.transparent, // ListTile 꾹 누르는 효과 끄기
         scaffoldBackgroundColor: Colors.white,
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: const AppBarTheme(
@@ -32,7 +34,7 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainNavigationScreen(),
+      home: const ActivityScreen(),
     );
   }
 }
