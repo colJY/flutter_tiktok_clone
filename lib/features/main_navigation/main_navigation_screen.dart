@@ -7,6 +7,7 @@ import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_screen.dart';
+import 'package:tiktok_clone/users/user_profile_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -16,7 +17,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 4;
   bool _longTap = false;
 
   void _onTap(int index) {
@@ -62,7 +63,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: Container(),
+            child: const UserProfileScreen(),
           ),
         ],
       ), // screens[_selectedIndex] 이거랑 같은 의미
