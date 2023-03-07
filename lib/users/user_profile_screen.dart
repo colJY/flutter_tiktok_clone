@@ -24,6 +24,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final psizes = MediaQuery.of(context).size;
     return SafeArea(
       child: DefaultTabController(
         length: 2,
@@ -48,7 +49,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     const CircleAvatar(
                       radius: 50,
                       foregroundImage: NetworkImage(
-                          "https://i.ytimg.com/vi/F2utz6L76D0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCS-YMR9pYDjNLL8CgUkjERw4Gv8w"),
+                        "https://avatars.githubusercontent.com/u/94308690?v=4",
+                      ),
                       child: Text("영주"),
                     ),
                     Gaps.v20,
@@ -221,9 +223,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     ScrollViewKeyboardDismissBehavior.onDrag, // 키보드가 드래그할때 ㅐ사라짐
                 padding: EdgeInsets.zero,
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 9 / 14,
-                  crossAxisCount: 3,
+                  crossAxisCount: psizes.width < 750 ? 3 : 5,
                   crossAxisSpacing: Sizes.size2,
                   mainAxisSpacing: Sizes.size2,
                 ),
@@ -244,20 +246,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           left: 3,
                           bottom: 3,
                           child: Row(
-                            children: const [
-                              FaIcon(
+                            children: [
+                              const FaIcon(
                                 FontAwesomeIcons.solidCirclePlay,
                                 color: Colors.white,
                               ),
                               Gaps.h3,
                               Text(
-                                "4.1M",
-                                style: TextStyle(
+                                "4.1M +${psizes.width}",
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,
                                   fontSize: Sizes.size12,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

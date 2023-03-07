@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -31,6 +32,7 @@ class _VideoPostState extends State<
   late final AnimationController _animationController;
 
   bool _isPaused = false;
+  bool _isVolume = false;
 
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
@@ -46,8 +48,21 @@ class _VideoPostState extends State<
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0); // 웹인지 확인
+    }
     setState(() {});
     _videoPlayerController.addListener(_onVideoChange);
+  }
+
+  void _onVolumeChanged() {
+    _isVolume = !_isVolume;
+    if (_isVolume == true) {
+      _videoPlayerController.setVolume(100);
+    } else {
+      _videoPlayerController.setVolume(0);
+    }
+    setState(() {});
   }
 
   @override
@@ -173,6 +188,24 @@ class _VideoPostState extends State<
                   style: TextStyle(
                     fontSize: Sizes.size16,
                     color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 20,
+            left: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: _onVolumeChanged,
+                  child: VideoButton(
+                    icon: _isVolume
+                        ? FontAwesomeIcons.volumeHigh
+                        : FontAwesomeIcons.volumeOff,
+                    text: _isVolume ? "Volume On" : "Volume off",
                   ),
                 ),
               ],
