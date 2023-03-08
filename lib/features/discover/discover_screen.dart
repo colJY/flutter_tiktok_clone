@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utils.dart';
 
 final tabs = [
   "Top",
@@ -99,7 +100,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ],
                       ),
                       filled: true,
-                      fillColor: Colors.grey.shade200,
+                      fillColor: isDarkMode(context)
+                          ? Colors.grey.shade800
+                          : Colors.grey.shade200,
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -140,8 +143,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               fontWeight: FontWeight.w600,
               fontSize: Sizes.size16,
             ),
-            labelColor: Colors.black,
-            indicatorColor: Colors.black,
             tabs: [
               for (var tab in tabs)
                 Tab(
@@ -200,7 +201,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     if (constraint.maxWidth < 200 || constraint.maxWidth > 250)
                       DefaultTextStyle(
                         style: TextStyle(
-                          color: Colors.grey.shade600,
+                          color: isDarkMode(context)
+                              ? Colors.grey.shade300
+                              : Colors.grey.shade600,
                           fontWeight: FontWeight.w600,
                         ),
                         child: Row(

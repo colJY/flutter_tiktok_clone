@@ -29,6 +29,7 @@ class UserAccount extends StatelessWidget {
           followtext,
           style: TextStyle(
             color: Colors.grey.shade500,
+            height: 1,
           ),
         ),
       ],

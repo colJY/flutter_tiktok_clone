@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 
 import 'constants/sizes.dart';
 
@@ -25,7 +25,12 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
+        useMaterial3: true, // Material3 Migration
+        // textTheme: GoogleFonts.itimTextTheme(),
+        textTheme: Typography.blackMountainView,
+        brightness: Brightness.light,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFe9435A),
         ), // cupertino Search cursor 색은 여기서
@@ -34,6 +39,7 @@ class TikTokApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: const AppBarTheme(
+          surfaceTintColor: Colors.white,
           centerTitle: true,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
@@ -44,8 +50,41 @@ class TikTokApp extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicator: const UnderlineTabIndicator(
+            borderSide: BorderSide(
+              width: 2,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.black,
+        ),
       ),
-      home: const MainNavigationScreen(),
+      darkTheme: ThemeData(
+        useMaterial3: true, // Material3 Migration
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFe9435A),
+        ),
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.grey.shade900,
+          color: Colors.grey.shade900,
+        ),
+        // textTheme: GoogleFonts.itimTextTheme(
+        //   ThemeData(brightness: Brightness.dark).textTheme,
+        // ),
+        textTheme: Typography.whiteMountainView,
+        scaffoldBackgroundColor: Colors.black,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade800,
+        ),
+        primaryColor: const Color(0xFFE9435A),
+        brightness: Brightness.dark,
+      ),
+      home: const SignUpScreen(),
     );
   }
 }
