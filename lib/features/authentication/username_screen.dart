@@ -6,6 +6,7 @@ import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'widgets/form_button.dart';
 
 class UsernameScreen extends StatefulWidget {
+  static String routeName = "/username";
   const UsernameScreen({super.key});
 
   @override
@@ -35,11 +36,10 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
   void _onNextTap() {
     if (_username.isEmpty) return;
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) =>
-            const EmailScreen(), // stateful 안의 State 안에 있다면 어디서든 context 사용 가능해서 context를 넘겨주지 않아도 됨 [ex] _onNextTap(Build Context context)
-      ),
+    Navigator.pushNamed(
+      context,
+      EmailScreen.routeName,
+      arguments: EmailScreenArgs(username: _username),
     );
   }
 
