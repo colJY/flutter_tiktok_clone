@@ -66,7 +66,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const UserProfileScreen(),
+            child: const UserProfileScreen(
+              username: "영주",
+              tab: "",
+            ),
           ),
         ],
       ), // screens[_selectedIndex] 이거랑 같은 의미

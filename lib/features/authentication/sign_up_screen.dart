@@ -6,18 +6,21 @@ import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/username_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatelessWidget {
-  static String routeName = "/";
+  static const routeURL = "/";
+  static const routeName = "signUp";
   const SignUpScreen({super.key});
 
   void _onLoginTap(BuildContext context) async {
-    final result = await Navigator.of(context).pushNamed(LoginScreen.routeName);
-    print(result);
+    context.push(LoginScreen.routeName);
+    //context.push(LoginScreen.routeName); stack 형식의 push와 다른 방식
+    // context.push("/login")
   }
 
   void _onEmailTap(BuildContext context) {
-    Navigator.of(context).pushNamed(UsernameScreen.routeName);
+    context.pushNamed(UsernameScreen.routeName);
     // Navigator.of(context).push(
     //   PageRouteBuilder(
     //     transitionDuration: const Duration(seconds: 1),

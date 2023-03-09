@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
-
+import 'package:go_router/go_router.dart';
 import 'widgets/form_button.dart';
 
 class UsernameScreen extends StatefulWidget {
-  static String routeName = "/username";
+  static String routeURL = "username";
+  static String routeName = "username";
+
   const UsernameScreen({super.key});
 
   @override
@@ -36,10 +38,9 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
   void _onNextTap() {
     if (_username.isEmpty) return;
-    Navigator.pushNamed(
-      context,
+    context.pushNamed(
       EmailScreen.routeName,
-      arguments: EmailScreenArgs(username: _username),
+      extra: EmailScreenArgs(username: _username),
     );
   }
 
