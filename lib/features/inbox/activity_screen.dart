@@ -5,6 +5,8 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/utils.dart';
 
 class ActivityScreen extends StatefulWidget {
+  static const String routeName = "activity";
+  static const String routeURL = "/activity";
   const ActivityScreen({super.key});
 
   @override
@@ -120,7 +122,9 @@ class _ActivityScreenState extends State<ActivityScreen>
                 child: Text(
                   "New",
                   style: TextStyle(
-                      fontSize: Sizes.size14, color: Colors.grey.shade500),
+                    fontSize: Sizes.size14,
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ),
               Gaps.v14,
@@ -162,11 +166,11 @@ class _ActivityScreenState extends State<ActivityScreen>
                       width: Sizes.size52,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: isDark ? Colors.grey.shade800 : Colors.white,
+                        color: isDark ? Colors.white : Colors.grey.shade800,
                         border: Border.all(
                           color: isDark
-                              ? Colors.grey.shade800
-                              : Colors.grey.shade400,
+                              ? Colors.grey.shade400
+                              : Colors.grey.shade800,
                           width: Sizes.size1,
                         ),
                       ),
@@ -181,7 +185,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                         text: "Account updates:",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            color: isDark ? null : Colors.black,
+                            color: isDark ? Colors.black : null,
                             fontSize: Sizes.size16),
                         children: [
                           const TextSpan(

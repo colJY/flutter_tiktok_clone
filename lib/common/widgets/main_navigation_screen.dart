@@ -6,35 +6,46 @@ import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/features/videos/video_recording_screen.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_screen.dart';
 import 'package:tiktok_clone/users/user_profile_screen.dart';
 import 'package:tiktok_clone/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  const MainNavigationScreen({super.key});
+  static const String routeName = "mainNavigation";
+
+  final String tab;
+  const MainNavigationScreen({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 1;
+  final List<String> _tabs = [
+    "home",
+    "discover",
+    "xxxxx",
+    "inbox",
+    "profile",
+  ];
+
+  late int _selectedIndex = _tabs.indexOf(widget.tab);
   bool _longTap = false;
 
   void _onTap(int index) {
+    context.go("/${_tabs[index]}");
     setState(() {
       _selectedIndex = index;
     });
   }
 
   void _onPostVideoButtonTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (context) => Scaffold(
-                appBar: AppBar(title: const Text('Record Video')),
-              ),
-          fullscreenDialog: true),
-    );
+    context.pushNamed(VideoRecordingScreen.routeName);
   }
 
   void _onPostVideoButtonLongTap() {

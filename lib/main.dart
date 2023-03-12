@@ -26,7 +26,7 @@ class TikTokApp extends StatelessWidget {
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
         useMaterial3: true, // Material3 Migration
         // textTheme: GoogleFonts.itimTextTheme(),

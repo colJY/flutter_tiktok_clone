@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/onboarding/interests_screen.dart';
 
 import 'widgets/form_button.dart';
@@ -31,12 +32,8 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
   }
 
   void _onNextTap() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const InterestsScreen(),
-      ),
-      (route) => false,
-    );
+    context.pushReplacementNamed(
+        InterestsScreen.routeName); // 뒤로가기가 불가됨 기존 (/) 에서 (/onbording으로 옮겨짐)
   }
 
   void _setTextFieldDate(DateTime date) {
