@@ -32,9 +32,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             // changeNotifier에서 사용하는 게 특이한 점 , 해당하는 리스트타일만 rebuild하기 때문에 더 좋다
             animation: videoConfig,
             builder: (context, child) => SwitchListTile.adaptive(
-              value: videoConfig.autoMuted,
+              value: videoConfig.value,
               onChanged: (value) {
-                videoConfig.toggleAutoMute();
+                videoConfig.value = !videoConfig.value;
+              },
+              title: const Text("Enable notifications"),
+            ),
+          ),
+          AnimatedBuilder(
+            animation: darkConfig,
+            builder: (context, child) => SwitchListTile.adaptive(
+              value: darkConfig.value,
+              onChanged: (value) {
+                darkConfig.value = !darkConfig.value;
               },
               title: const Text("Enable notifications"),
             ),
