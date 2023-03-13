@@ -8,6 +8,7 @@ import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:provider/provider.dart';
 
 class VideoPost extends StatefulWidget {
   final Function onVideoFinished;
@@ -34,7 +35,7 @@ class _VideoPostState extends State<
 
   bool _isPaused = false;
   bool _isVolume = false;
-  bool _autoMute = videoConfig.value;
+
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
   void _onVideoChange() {
@@ -76,13 +77,6 @@ class _VideoPostState extends State<
       upperBound: 1.5,
       value: 1.5, // 시작값
       duration: _animationDuration,
-    );
-    videoConfig.addListener(
-      () {
-        setState(() {
-          _autoMute = videoConfig.value;
-        });
-      },
     );
   }
 
@@ -181,13 +175,13 @@ class _VideoPostState extends State<
             top: 80,
             child: IconButton(
               icon: FaIcon(
-                _autoMute
+                context.watch<VideoConfig>().isMuted
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
               onPressed: () {
-                videoConfig.value = !videoConfig.value;
+                context.read<VideoConfig>().toggleIsMuted();
               },
             ),
           ),

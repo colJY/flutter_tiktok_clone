@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/router.dart';
 
@@ -23,13 +24,18 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: darkConfig,
-      builder: (context, child) => MaterialApp.router(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => VideoConfig(),
+        ),
+      ],
+      child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        themeMode: darkConfig.value ? ThemeMode.dark : ThemeMode.light,
+        themeMode: ThemeMode.light,
+        // themeMode: darkConfig.value ? ThemeMode.dark : ThemeMode.light,
         theme: ThemeData(
           useMaterial3: true, // Material3 Migration
           // textTheme: GoogleFonts.itimTextTheme(),

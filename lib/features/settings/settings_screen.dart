@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -28,27 +29,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          AnimatedBuilder(
-            // changeNotifier에서 사용하는 게 특이한 점 , 해당하는 리스트타일만 rebuild하기 때문에 더 좋다
-            animation: videoConfig,
-            builder: (context, child) => SwitchListTile.adaptive(
-              value: videoConfig.value,
-              onChanged: (value) {
-                videoConfig.value = !videoConfig.value;
-              },
-              title: const Text("Enable notifications"),
-            ),
+          SwitchListTile.adaptive(
+            value: context.watch<VideoConfig>().isMuted,
+            onChanged: (value) {
+              context.read<VideoConfig>().toggleIsMuted();
+            },
+            title: const Text("Auto Mute"),
           ),
-          AnimatedBuilder(
-            animation: darkConfig,
-            builder: (context, child) => SwitchListTile.adaptive(
-              value: darkConfig.value,
-              onChanged: (value) {
-                darkConfig.value = !darkConfig.value;
-              },
-              title: const Text("Enable notifications"),
-            ),
-          ),
+          // AnimatedBuilder(
+          //   // changeNotifier에서 사용하는 게 특이한 점 , 해당하는 리스트타일만 rebuild하기 때문에 더 좋다
+          //   animation: videoConfig,
+          //   builder: (context, child) => SwitchListTile.adaptive(
+          //     value: videoConfig.value,
+          //     onChanged: (value) {
+          //       videoConfig.value = !videoConfig.value;
+          //     },
+          //     title: const Text("Enable notifications"),
+          //   ),
+          // ),
+          // AnimatedBuilder(
+          //   animation: darkConfig,
+          //   builder: (context, child) => SwitchListTile.adaptive(
+          //     value: darkConfig.value,
+          //     onChanged: (value) {
+          //       darkConfig.value = !darkConfig.value;
+          //     },
+          //     title: const Text("다크 모드"),
+          //   ),
+          // ),
           ListTile(
             title: const Text("로그아웃 (ios / bottom)"),
             textColor: Colors.red,
