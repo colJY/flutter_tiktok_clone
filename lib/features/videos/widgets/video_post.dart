@@ -34,7 +34,7 @@ class _VideoPostState extends State<
 
   bool _isPaused = false;
   bool _isVolume = false;
-
+  bool _autoMute = videoConfig.autoMuted;
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
   void _onVideoChange() {
@@ -76,6 +76,13 @@ class _VideoPostState extends State<
       upperBound: 1.5,
       value: 1.5, // 시작값
       duration: _animationDuration,
+    );
+    videoConfig.addListener(
+      () {
+        setState(() {
+          _autoMute = videoConfig.autoMuted;
+        });
+      },
     );
   }
 
@@ -174,12 +181,12 @@ class _VideoPostState extends State<
             top: 80,
             child: IconButton(
               icon: FaIcon(
-                VideoConfigData.of(context).autoMute
+                _autoMute
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: VideoConfigData.of(context).toggleMuted,
+              onPressed: videoConfig.toggleAutoMute,
             ),
           ),
           Positioned(

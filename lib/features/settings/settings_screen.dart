@@ -28,13 +28,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          SwitchListTile.adaptive(
-            value: VideoConfigData.of(context).autoMute,
-            onChanged: (value) {
-              VideoConfigData.of(context).toggleMuted();
-            },
-            title: const Text("Auto Mute"),
-            subtitle: const Text("Videos will be muted by default"),
+          AnimatedBuilder(
+            // changeNotifier에서 사용하는 게 특이한 점 , 해당하는 리스트타일만 rebuild하기 때문에 더 좋다
+            animation: videoConfig,
+            builder: (context, child) => SwitchListTile.adaptive(
+              value: videoConfig.autoMuted,
+              onChanged: (value) {
+                videoConfig.toggleAutoMute();
+              },
+              title: const Text("Enable notifications"),
+            ),
           ),
           ListTile(
             title: const Text("로그아웃 (ios / bottom)"),
